@@ -19,7 +19,7 @@ function spawnGrid(size) {
 			block.className = "block";
 			block.setAttribute("data-value", 0);
 			block.addEventListener("click", function() {
-				this.innerHTML = "Hello World";
+				this.innerHTML = "X";
 			});
 			row.appendChild(block);
 		}

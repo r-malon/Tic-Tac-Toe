@@ -5,6 +5,10 @@ const N = 3;
 var virtualGrid = [];
 
 
+function makeMove() {
+	// body...
+}
+
 function checkEnd() {
 	// body...
 }
