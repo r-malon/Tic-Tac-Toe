@@ -1,0 +1,40 @@
+body, html{
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	text-align: center;
+	font-family: sans-serif;
+}
+
+.block {
+	background: #eee;
+	display: inline-block;
+	padding: 40px;
+	font-size: 60px;
+	margin: 5px;
+	cursor: pointer;
+	color: #eee;
+}
+
+.player, .winner {
+	font-size: 30px;
+	margin-top: 10px;
+}
+
+button {
+	margin-top: 10px;
+	width: 100px;
+	height: 30px;
+	background: #eee;
+	cursor: pointer;
+}
+
+#summary {
+	display: none;
+	text-align: justify;
+	width: 40%;
+	padding: 8px;
+	border: 2px solid black;
+}
