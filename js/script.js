@@ -2,42 +2,63 @@
 
 window.onload = function() {
 	document.getElementById("knowmore").addEventListener("click", getWikiSummary);
-	spawnGrid(3);
+	spawnGrid(N);
+	showTurn();
+	virtualGrid = [
+		[0, 0, 0], 
+		[0, 0, 0], 
+		[0, 0, 0], 
+	];
 }
-
+var blocks = document.getElementsByClassName("block");
+var rows = document.getElementsByClassName("row");
 
 function spawnGrid(size) {
 	var grid = document.getElementById("grid");
 
-	for (var i = 0; i < size; i++) {
+	for (let i = 0; i < size; i++) {
 		var row = document.createElement("div");
 		row.className = "row";
 		grid.appendChild(row);
 
-		for (var j = 0; j < size; j++) {
+		for (let j = 0; j < size; j++) {
 			var block = document.createElement("div");
 			block.className = "block";
-			block.setAttribute("data-value", 0);
+
 			block.addEventListener("click", function() {
-				this.innerHTML = "X";
+				if (!this.hasAttribute("checked")) {
+					makeMove(this, i, j);
+					showTurn();
+					if (turns == 2*N - 1) {}
+				}
 			});
 			row.appendChild(block);
 		}
 	}
 }
 
+function logicHook(block) {
+	// body...
+}
+
+function showTurn() {
+	var turnText = document.getElementById('turn');
+	turnText.textContent = PLAYERS[playerTurn];
+	turnText.style.color = PLAYERS[playerTurn];
+}
+
 function getWikiSummary() {
-//	httpGet(`https://${lang}.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&origin=*&redirects=1&titles=${title}`, parseResponse);
 	var langs = document.getElementById("language");
 	var opt = langs.options[langs.selectedIndex];
-	httpGet(`https://${opt.value}.wikipedia.org/api/rest_v1/page/summary/${opt.getAttribute('data-title')}`, parseResponse);
+	httpGet(`https://${opt.value}.wikipedia.org/api/rest_v1/page/summary/${opt.getAttribute('data-title')}`, 
+		parseResponse);
 }
 
 function parseResponse(xhttp) {
 	const response = JSON.parse(xhttp.responseText);
 	var summary = document.getElementById("summary");
 	summary.style.display = "block";
-	summary.innerHTML = response.extract;
+	summary.textContent = response.extract;
 }
 
 function httpGet(url, callback) {
