@@ -7,7 +7,7 @@ var turns = 0, playerTurn = 0;
 
 
 function makeMove(block) {
-	block.setAttribute("checked", '');	// set true, data-* is more correct
+	block.setAttribute("data-checked", '');	// set true
 	virtualGrid[block.row][block.col] = playerTurn;
 	block.style.background = PLAYERS[playerTurn];
 	turns++;

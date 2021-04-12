@@ -31,7 +31,7 @@ function spawnGrid(size) {
 function logicHook(event) {
 	let block = event.currentTarget;
 
-	if (!(block.hasAttribute("checked")) && !gameEnded) {
+	if (!(block.hasAttribute("data-checked")) && !gameEnded) {
 		makeMove(block);
 		showTurn();
 		if (turns >= 2*N - 1) {
